@@ -24,7 +24,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('login', [AuthController::class, 'login']);
 
-Route::get('planes', [PlanesController::class, 'index']);
+
+
 
 
 
@@ -37,7 +38,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('usuarios-update', [AuthController::class, 'update']);
     Route::post('usuarios-delete', [AuthController::class, 'destroy']);
 
-
+    Route::get('planes', [PlanesController::class, 'index']);
     Route::post('planes-create', [PlanesController::class, 'create']);
     Route::post('planes-update', [PlanesController::class, 'update']);
     Route::post('planes-delete', [PlanesController::class, 'destroy']);
