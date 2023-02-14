@@ -61,7 +61,8 @@ class AuthController extends Controller
 
         if (!Auth::attempt($request->only('email', 'password'))) {
             return response()->json([
-                'message' => 'NO AUTORIZADO'
+                'type' => false,
+                'message' => 'La contraseña o usuario son incorrectos'
             ], 401);
         }
 
@@ -80,13 +81,15 @@ class AuthController extends Controller
         if ($verificar > $usrinfo[0]['dispositivos']) {
 
             return response()->json([
+                'type' => false,
                 'message' => 'Numero de dispositivos ha superado el limite, deseas eliminar las sesiones?'
             ]);
         } else {
             $token = $user->createtoken('auth_token')->plainTextToken;
 
             return response()->json([
-                'message' => 'Hola ' . $user->name,
+                'type' => true,
+                'message' => 'Bienvenido ' . $user->name,
                 'access_token' => $token,
                 'token_type' => 'Bearer',
                 'user' => $user,
