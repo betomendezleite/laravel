@@ -23,6 +23,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::post('login', [AuthController::class, 'login']);
+Route::post('logouts', [AuthController::class, 'logouts']);
 
 
 
@@ -43,7 +44,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('planes-update', [PlanesController::class, 'update']);
     Route::post('planes-delete', [PlanesController::class, 'destroy']);
 
-    Route::post('logouts', [AuthController::class, 'logouts']);
+
 
     //PELICULAS
     Route::get('peliculas', [PeliculasController::class, 'index']);
