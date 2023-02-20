@@ -82,7 +82,8 @@ class AuthController extends Controller
 
             return response()->json([
                 'code' => 1,
-                'message' => 'Numero de dispositivos ha superado el limite, deseas eliminar las sesiones?'
+                'message' => 'Numero de dispositivos ha superado el limite de su plan. Elimina las sesiones o actualiza tu plan.',
+                'user' => $user
             ]);
         } else {
             $token = $user->createtoken('auth_token')->plainTextToken;
@@ -98,9 +99,10 @@ class AuthController extends Controller
         }
     }
 
-    public function logouts()
+    public function logouts($id)
     {
-        auth()->user()->tokens()->delete();
+        //auth()->user()->tokens()->delete();
+        DB::table('personal_access_tokens')->where('id',$id)->delete();
         return [
             'message' => 'Mensaje: Tokens eliminados'
         ];
