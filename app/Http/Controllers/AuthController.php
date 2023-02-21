@@ -102,7 +102,7 @@ class AuthController extends Controller
     public function logouts(Request $id)
     {
         //auth()->user()->tokens()->delete();
-        DB::table('personal_access_tokens')->where('id',$id->id)->delete();
+        DB::table('personal_access_tokens')->where('tokenable_id',$id->id)->delete();
         return [
             'message' => 'Mensaje: Tokens eliminados'
         ];
