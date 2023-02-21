@@ -64,8 +64,9 @@ class AuthController extends Controller
                 'code' => 1,
                 'message' => 'La contraseña o usuario son incorrectos'
             ], 401);
-        }else{
-            
+        }
+
+
 
         $user = User::where('email', $request->email)->firstOrFail();
 
@@ -96,9 +97,6 @@ class AuthController extends Controller
                 'dispositivos' => $verificar
             ]);
         }
-        }
-
-
     }
 
     public function logouts(Request $id)
