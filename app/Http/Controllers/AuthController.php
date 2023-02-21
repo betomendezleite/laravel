@@ -99,10 +99,10 @@ class AuthController extends Controller
         }
     }
 
-    public function logouts($id)
+    public function logouts(Request $id)
     {
         //auth()->user()->tokens()->delete();
-        DB::table('personal_access_tokens')->where('id',$id)->delete();
+        DB::table('personal_access_tokens')->where('id',$id->id)->delete();
         return [
             'message' => 'Mensaje: Tokens eliminados'
         ];
@@ -110,18 +110,7 @@ class AuthController extends Controller
 
     public function update(Request $request, user $users)
     {
-        /*         $request->validate([
-            'nombres' => 'required|string|max:255',
-            'apellidos' => 'required|string|max:255',
-            'username' => 'required|string|max:255|unique:users',
-            'admin' => 'required|string|max:255',
-            'telefonos' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:8',
-            'planes_id' => 'required|string|max:255',
-            'vencimiento_plan' => 'required|string|max:255',
-        ]);
- */
+
         $users = User::find($request->id);
         $users->nombres = $request->nombres;
         $users->apellidos = $request->apellidos;
