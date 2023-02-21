@@ -61,7 +61,7 @@ class AuthController extends Controller
 
         if (!Auth::attempt($request->only('email', 'password'))) {
             return response()->json([
-                'code' => 2,
+                'code' => 1,
                 'message' => 'La contraseña o usuario son incorrectos'
             ], 401);
         }
@@ -81,7 +81,7 @@ class AuthController extends Controller
         if ($verificar > $usrinfo[0]['dispositivos']) {
 
             return response()->json([
-                'code' => 1,
+                'code' => 2,
                 'message' => 'Numero de dispositivos ha superado el limite de su plan. Elimina las sesiones o actualiza tu plan.',
                 'user' => $user
             ]);
